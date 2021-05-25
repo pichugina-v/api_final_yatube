@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
-from rest_framework.validators import UniqueTogetherValidator
 from .models import Comment, Follow, Group, Post
 
 User = get_user_model()
@@ -51,15 +50,13 @@ class FollowSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if self.context['request'].user == attrs['following']:
             raise ValidationError('Вы не можете подписаться на самого себя')
+        elif Follow.objects.filter(
+            user=self.context['request'].user,
+            following=attrs['following']
+        ).exists():
+            raise ValidationError('Подписка уже существует')
         return attrs
 
     class Meta:
         fields = '__all__'
         model = Follow
-        validators = [
-            UniqueTogetherValidator(
-                queryset=Follow.objects.all(),
-                fields=['following', 'user'],
-                message='Подписка уже существует'
-            )
-        ]
