@@ -32,7 +32,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = ('title', )
+        fields = ('__all__')
         model = Group
 
 
@@ -48,11 +48,13 @@ class FollowSerializer(serializers.ModelSerializer):
     )
 
     def validate(self, attrs):
-        if self.context['request'].user == attrs['following']:
+        user = self.context['request'].user
+        following = attrs['following']
+        if user == following:
             raise ValidationError('Вы не можете подписаться на самого себя')
         if Follow.objects.filter(
-            user=self.context['request'].user,
-            following=attrs['following']
+            user=user,
+            following=following
         ).exists():
             raise ValidationError('Подписка уже существует')
         return attrs
