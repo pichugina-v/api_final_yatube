@@ -41,15 +41,6 @@ Authorization: Bearer <access token>
 refresh: <refresh token>
 ```
 
-`Access token` действителен в течение 30 дней, `resresh token` - в течение 90 дней. 
-Вы можете самостоятельно изменить срок действия `access token` и `refresh token` в настройках проекта. Для этого в `/yatube_api/settings.py` измените значения в строках
-```python
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=90)
-}
-```
-
 
 # Функционал:
 Приложение предоставляет возможность:
