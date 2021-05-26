@@ -22,8 +22,7 @@ python manage.py runserver
 
 
 # Аутентификация:
-В проекте реализована JWT аутентификация. Для получения `access token` и `refresh token` отправье POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/
-В запросе передайте
+В проекте реализована JWT аутентификация. Для получения `access token` и `refresh token` отправье POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/ . В запросе передайте
 ```python
 username: <username> 
 password: <password>
