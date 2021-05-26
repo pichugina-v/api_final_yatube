@@ -1,4 +1,4 @@
-# API для проекта Yatube на базе Django Rest Framework. Приложение предосталвяет удобный доступ к данным проекта Yatube.
+# API для проекта Yatube. 
 
 
 # Начало работы:
@@ -22,33 +22,23 @@ python manage.py runserver
 
 
 # Аутентификация:
-В проекте реализована JWT аутентификация. Для получения `access token` и `refresh token` отправье POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/
-В запросе передайте
+В проекте реализована JWT аутентификация. Для получения `access token` и `refresh token` отправье POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/. В запросе передайте
 ```python
 username: <username> 
 password: <password>
 ```
 
 
-Для аутентификации при отправке запроса передавайте токен в заголовке 
+Для аутентификации при отправке запроса передавайте токен в заголовке
 ```python
 Authorization: Bearer <access token>
 ```
 
 
-Для обновления токена отправьте POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/refresh/
+Для обновления токена отправьте POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/refresh/.
 В запросе передайте
 ```python
 refresh: <refresh token>
-```
-
-`Access token` действителен в течение 30 дней, `resresh token` - в течение 90 дней
-Вы можете самостоятельно изменить срок действия `access token` и `refresh token` в настройках проекта. Для этого в `/yatube_api/settings.py` измените значения в строках
-```python
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=90)
-}
 ```
 
 
@@ -60,16 +50,16 @@ SIMPLE_JWT = {
 * Подписываться на пользователей
 * Получать список подписчиков
 
-*Доступ к подпискам доступен только для аутентифицированных клиентов. Для остальных объектов неаутентифицированным клиентам доспутна только функция чтения (GET).*
+*Доступ к подпискам доступен только для аутентифицированных клиентов. В остальных случаях для неаутентифицированных клиентов доспутна только функция чтения (GET).*
 
 
 # Доступные url:
-* /api/v1/posts/
-* /api/v1/posts/{post_id}/
-* /api/v1/posts/{post_id}/comment/
-* /api/v1/posts/{post_id}/comment/{comment_id}/
-* /api/v1/group/
-* /api/v1/follow/
+* `/api/v1/posts/`
+* `/api/v1/posts/{post_id}/`
+* `/api/v1/posts/{post_id}/comment/`
+* `/api/v1/posts/{post_id}/comment/{comment_id}/`
+* `/api/v1/group/`
+* `/api/v1/follow/`
 
 
 # Примеры использования:
@@ -102,7 +92,7 @@ text: <text>
 text: <text>
 ```
 * Для частичного изменения поста отправьте PATCH-запрос на адрес http://127.0.0.1:8000/api/v1/posts/{post_id}/
-* Для частичного изменения поста отправьте DELETE-запрос на адрес http://127.0.0.1:8000/api/v1/posts/{post_id}/
+* Для удаления поста отправьте DELETE-запрос на адрес http://127.0.0.1:8000/api/v1/posts/{post_id}/
 * Для фильтрации постов по группе отправьте GET-запрос http://127.0.0.1:8000/api/v1/posts/ , указав в `params`
 ```python
 group: <group_id>
