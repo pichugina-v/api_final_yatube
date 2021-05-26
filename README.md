@@ -14,22 +14,30 @@ python manage.py runserver
 # Аутентификация:
 В проекте реализована JWT аутентификация. Для получения access token и refresh token отправье POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/
 В запросе передайте 
-    username: <username> 
-    password: <password>
+```
+username: <username> 
+password: <password>
+```
 
 Для аутентификации при отправке запроса передавайте токен в заголовке 
-    Authorization: Bearer <access token>
+```
+Authorization: Bearer <access token>
+```
 
 Для обновления токена отправьте POST-запрос на адрес http://127.0.0.1:8000/api/v1/token/refresh/
 В запросе передайте
-    refresh: <refresh token>
+```
+refresh: <refresh token>
+```
 
 Access token действителен в течение 30 дней, resresh token - в течение 90 дней
 Вы можете самостоятельно изменить срок действия access token и refresh token в настройках проекта. Для этого в /yatube_api/settings.py измените значения в строках
-    SIMPLE_JWT = {
-        'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-        'REFRESH_TOKEN_LIFETIME': timedelta(days=90)
-    }
+```
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=90)
+}
+```
 
 # Функционал:
 Приложение предоставляет возможность получать информацию о:
