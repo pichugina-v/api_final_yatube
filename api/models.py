@@ -82,9 +82,6 @@ class Follow(models.Model):
         related_name='following'
     )
 
-    class Meta:
-        unique_together = ['user', 'following']
-
     def __str__(self):
         return (f'Подписчик: {self.user.username}, '
                 f'Подписан на: {self.following.username} ')
