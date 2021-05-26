@@ -41,7 +41,7 @@ Authorization: Bearer <access token>
 refresh: <refresh token>
 ```
 
-`Access token` действителен в течение 30 дней, `resresh token` - в течение 90 дней
+`Access token` действителен в течение 30 дней, `resresh token` - в течение 90 дней. 
 Вы можете самостоятельно изменить срок действия `access token` и `refresh token` в настройках проекта. Для этого в `/yatube_api/settings.py` измените значения в строках
 ```python
 SIMPLE_JWT = {
@@ -59,16 +59,16 @@ SIMPLE_JWT = {
 * Подписываться на пользователей
 * Получать список подписчиков
 
-*Доступ к подпискам доступен только для аутентифицированных клиентов. Для остальных объектов неаутентифицированным клиентам доспутна только функция чтения (GET).*
+*Доступ к подпискам доступен только для аутентифицированных клиентов. В остальных случаях для неаутентифицированных клиентов доспутна только функция чтения (GET).*
 
 
 # Доступные url:
-* /api/v1/posts/
-* /api/v1/posts/{post_id}/
-* /api/v1/posts/{post_id}/comment/
-* /api/v1/posts/{post_id}/comment/{comment_id}/
-* /api/v1/group/
-* /api/v1/follow/
+* `/api/v1/posts/`
+* `/api/v1/posts/{post_id}/`
+* `/api/v1/posts/{post_id}/comment/`
+* `/api/v1/posts/{post_id}/comment/{comment_id}/`
+* `/api/v1/group/`
+* `/api/v1/follow/`
 
 
 # Примеры использования:
