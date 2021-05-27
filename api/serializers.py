@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from rest_framework.fields import CurrentUserDefault
 from .models import Comment, Follow, Group, Post
 
 User = get_user_model()
@@ -39,8 +38,7 @@ class GroupSerializer(serializers.ModelSerializer):
 class FollowSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(
         read_only=True,
-        slug_field='username',
-        default=CurrentUserDefault()
+        slug_field='username'
     )
     following = serializers.SlugRelatedField(
         slug_field='username',
@@ -62,3 +60,4 @@ class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Follow
+        read_only_field = ('user',)
