@@ -36,10 +36,10 @@ class Post(models.Model):
         ordering = ('-pub_date', )
 
     def __str__(self):
-        return (f'{self.text[:15]}, '
-                f'{self.pub_date}, '
-                f'{self.author.username}, '
-                f'{self.group}')
+        return (f'Текст поста: {self.text[:15]}, '
+                f'дата публикации: {self.pub_date}, '
+                f'автор: {self.author.username}, '
+                f'группа: {self.group}')
 
 
 class Comment(models.Model):
@@ -64,10 +64,10 @@ class Comment(models.Model):
         ordering = ('-created', )
 
     def __str__(self):
-        return (f'{self.author.username}, '
-                f'{self.post}, '
-                f'{self.text[:15]}, '
-                f'{self.created}')
+        return (f'Автор: {self.author.username}, '
+                f'текст поста: {self.post.text[:15]}, '
+                f'текст комментария: {self.text[:15]}, '
+                f'дата добавления: {self.created}')
 
 
 class Follow(models.Model):
@@ -84,4 +84,4 @@ class Follow(models.Model):
 
     def __str__(self):
         return (f'Подписчик: {self.user.username}, '
-                f'Подписан на: {self.following.username} ')
+                f'подписан на: {self.following.username} ')

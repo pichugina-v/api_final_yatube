@@ -1,9 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from .models import Comment, Follow, Group, Post
-
-User = get_user_model()
+from .models import Comment, Follow, Group, Post, User
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -60,4 +57,3 @@ class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Follow
-        read_only_field = ('user',)
