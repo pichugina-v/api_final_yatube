@@ -38,7 +38,7 @@ class Post(models.Model):
     def __str__(self):
         return (f'Текст поста: {self.text[:15]}, '
                 f'дата публикации: {self.pub_date}, '
-                f'автор: {self.author.username}, '
+                f'автор поста: {self.author.username}, '
                 f'группа: {self.group}')
 
 
@@ -64,9 +64,9 @@ class Comment(models.Model):
         ordering = ('-created', )
 
     def __str__(self):
-        return (f'Автор: {self.author.username}, '
-                f'текст поста: {self.post.text[:15]}, '
+        return (f'Автор комментария: {self.author.username}, '
                 f'текст комментария: {self.text[:15]}, '
+                f'к посту: {self.post.text[:15]}, '
                 f'дата добавления: {self.created}')
 
 
