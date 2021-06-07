@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import constraints
 
 User = get_user_model()
 
@@ -81,6 +82,18 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name='following'
     )
+
+    class Meta:
+        constraints = (
+            constraints.UniqueConstraint(
+                fields=['user', 'following'],
+                name='Подписчик-автор'
+            ),
+            models.CheckConstraint(
+                check=~models.Q(user=models.F('following')),
+                name='Автор не подписан на себя'
+            )
+        )
 
     def __str__(self):
         return (f'Подписчик: {self.user.username}, '
